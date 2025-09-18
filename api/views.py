@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .utils import get_cat_breeds
 from .models import Cat, Mission, Target
 
 @csrf_exempt
@@ -26,23 +27,30 @@ def cats_api(request, cat_id=None):
             return JsonResponse(list(cats), safe=False)
 
         elif request.method == "POST":
-            data = json.loads(request.body)
-            cat = Cat.objects.create(
-                name=data.get("name", ""),
-                breed=data.get("breed", ""),
-                years_of_experience=int(data.get("years_of_experience", 0)),
-                salary=int(data.get("salary", 0))
-            )
-            return JsonResponse({
-                "id": cat.id,
-                "name": cat.name,
-                "breed": cat.breed,
-                "years_of_experience": cat.years_of_experience,
-                "salary": cat.salary
-            })
+            try:
+                data = json.loads(request.body)
+                valid_breeds = get_cat_breeds()
+
+                if data["breed"] not in valid_breeds:
+                    return JsonResponse({"error": "Invalid breed"}, status=400)
+
+                cat = Cat.objects.create(
+                    name=data["name"],
+                    years_of_experience=data["years_of_experience"],
+                    breed=data["breed"],
+                    salary=data["salary"],
+                )
+                return JsonResponse({"id": cat.id, "message": "Cat created"}, status=201)
+            except Exception as e:
+                return JsonResponse({"error": str(e)}, status=400)
 
         elif request.method in ["PUT", "PATCH"] and cat_id is not None:
             data = json.loads(request.body)
+            valid_breeds = get_cat_breeds()
+
+            if data["breed"] not in valid_breeds:
+                return JsonResponse({"error": "Invalid breed"}, status=400)
+
             cat = Cat.objects.get(id=cat_id)
             cat.name = data.get("name", cat.name)
             cat.breed = data.get("breed", cat.breed)

@@ -19,7 +19,7 @@ DB_PORT=<YOUR_DB_PORT>
 To start application in dev mode, run the following commands in the project directory:
 
 ```bash
-pip install django python-dotenv django-cors-headers psycopg2-binary
+pip install django python-dotenv django-cors-headers psycopg2-binary requests
 python manage.py makemigrations
 python manage.py migrate
 python manage.py loaddata initial_data.json
