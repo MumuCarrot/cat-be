@@ -38,3 +38,77 @@ python manage.py runserver
 - `PUT /missions/<int:id>/` - Mission update + target update (but prohibited if the mission has been completed).
 - `DELETE /missions/<int:id>/` - Deletes the mission (if not linked to a cat).
 - `PATCH /missions/<int:id>/` - You can assign a cat to a mission.
+
+## Postman Collection
+
+`POST /api/cats/<int:cat_id>/`
+```
+{
+    "id": 1,
+    "name": "Tom",
+    "breed": "Siamese",
+    "years_of_experience": 3,
+    "salary": 2000
+}
+```
+
+`PUT /api/cats/<int:cat_id>/`
+```
+{
+    "id": 1,
+    "name": "Whiskers",
+    "breed": "Tabby",
+    "years_of_experience": 5,
+    "salary": 1000
+}
+```
+
+`POST /api/missions/`
+```
+{
+  "name": "Catch the Red Dot",
+  "description": "Top secret mission to chase the red dot in the living room",
+  "is_completed": false,
+  "cat": null,
+  "targets": [
+    {
+      "name": "Laser Point 1",
+      "country": "Living Room",
+      "notes": "Behind the sofa",
+      "is_completed": false
+    },
+    {
+      "name": "Laser Point 2",
+      "country": "Kitchen",
+      "notes": "Near the fridge",
+      "is_completed": false
+    }
+  ]
+}
+```
+
+`PUT /api/missions/1/`
+```
+{
+  "name": "Catch the Red Dot - Phase 2",
+  "description": "Updated mission with more intel",
+  "targets": [
+    {
+      "id": 1,
+      "notes": "Moved under the table",
+      "is_completed": true
+    },
+    {
+      "id": 2,
+      "notes": "Still near the fridge"
+    }
+  ]
+}
+```
+
+`PATCH /api/missions/1/`
+```
+{
+  "cat": 3
+}
+```
