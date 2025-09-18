@@ -32,3 +32,9 @@ python manage.py runserver
 - `POST /api/cats/<int:cat_id>/` - Create new cat in database.
 - `PUT /api/cats/<int:cat_id>/` - Change cat in database.
 - `DELETE /api/cats/<int:cat_id>/` - Delete cat from database.
+- `POST /missions/` - Creates a mission and immediately sets its targets.
+- `GET /missions/` - List of all missions.
+- `GET /missions/<int:id>/` - One mission with targets.
+- `PUT /missions/<int:id>/` - Mission update + target update (but prohibited if the mission has been completed).
+- `DELETE /missions/<int:id>/` - Deletes the mission (if not linked to a cat).
+- `PATCH /missions/<int:id>/` - You can assign a cat to a mission.
