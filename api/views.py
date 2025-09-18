@@ -6,7 +6,22 @@ from .models import Cat
 @csrf_exempt
 def cats_api(request, cat_id=None):
     try:
-        if request.method == "GET":
+        if request.method == "GET" and cat_id is not None:
+            cat = Cat.objects.get(id=cat_id)
+            return JsonResponse({
+                "id": cat.id,
+                "name": cat.name,
+                "breed": cat.breed,
+                "years_of_experience": cat.years_of_experience,
+                "salary": cat.salary
+            })
+
+        elif request.method == "DELETE" and cat_id is not None:
+            cat = Cat.objects.get(id=cat_id)
+            cat.delete()
+            return JsonResponse({"success": True})
+
+        elif request.method == "GET":
             cats = Cat.objects.all().values("id", "name", "years_of_experience", "breed", "salary")
             return JsonResponse(list(cats), safe=False)
 
