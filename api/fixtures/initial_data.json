@@ -1,0 +1,72 @@
+[
+  {
+    "model": "api.cat",
+    "pk": 1,
+    "fields": {
+      "name": "Tom",
+      "years_of_experience": 3,
+      "breed": "Siamese",
+      "salary": 1000
+    }
+  },
+  {
+    "model": "api.cat",
+    "pk": 2,
+    "fields": {
+      "name": "Jerry",
+      "years_of_experience": 1,
+      "breed": "Persian",
+      "salary": 800
+    }
+  },
+  {
+    "model": "api.cat",
+    "pk": 3,
+    "fields": {
+      "name": "Whiskers",
+      "years_of_experience": 5,
+      "breed": "Maine Coon",
+      "salary": 1200
+    }
+  },
+  {
+    "model": "api.cat",
+    "pk": 4,
+    "fields": {
+      "name": "Shadow",
+      "years_of_experience": 2,
+      "breed": "British Shorthair",
+      "salary": 900
+    }
+  },
+  {
+    "model": "api.cat",
+    "pk": 5,
+    "fields": {
+      "name": "Luna",
+      "years_of_experience": 4,
+      "breed": "Ragdoll",
+      "salary": 1100
+    }
+  },
+  {
+    "model": "api.cat",
+    "pk": 6,
+    "fields": {
+      "name": "Simba",
+      "years_of_experience": 6,
+      "breed": "Bengal",
+      "salary": 1300
+    }
+  },
+  {
+    "model": "api.cat",
+    "pk": 7,
+    "fields": {
+      "name": "Misty",
+      "years_of_experience": 3,
+      "breed": "Blue",
+      "salary": 1000
+    }
+  }
+]
